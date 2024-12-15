@@ -1,0 +1,81 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbms               |
+| finance            |
+| information_schema |
+| lab2               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use finance;
+Database changed
+mysql> CREATE TABLE income (
+    ->     incomeID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     incomeAmount DECIMAL(10,2),
+    ->     incomeCategory VARCHAR(50),
+    ->     incomeDate DATE,
+    ->     incomeDescription VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc income;
++-------------------+---------------+------+-----+---------+----------------+
+| Field             | Type          | Null | Key | Default | Extra          |
++-------------------+---------------+------+-----+---------+----------------+
+| incomeID          | int           | NO   | PRI | NULL    | auto_increment |
+| incomeAmount      | decimal(10,2) | YES  |     | NULL    |                |
+| incomeCategory    | varchar(50)   | YES  |     | NULL    |                |
+| incomeDate        | date          | YES  |     | NULL    |                |
+| incomeDescription | varchar(255)  | YES  |     | NULL    |                |
++-------------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> CREATE TABLE expenses (
+    ->     expenseID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     expenseAmount DECIMAL(10,2),
+    ->     expenseCategory VARCHAR(50),
+    ->     expenseDate DATE,
+    ->     expenseDescription VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc expenses;
++--------------------+---------------+------+-----+---------+----------------+
+| Field              | Type          | Null | Key | Default | Extra          |
++--------------------+---------------+------+-----+---------+----------------+
+| expenseID          | int           | NO   | PRI | NULL    | auto_increment |
+| expenseAmount      | decimal(10,2) | YES  |     | NULL    |                |
+| expenseCategory    | varchar(50)   | YES  |     | NULL    |                |
+| expenseDate        | date          | YES  |     | NULL    |                |
+| expenseDescription | varchar(255)  | YES  |     | NULL    |                |
++--------------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE users (
+    ->     userID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     username VARCHAR(50) NOT NULL UNIQUE,
+    ->     password VARCHAR(255) NOT NULL,
+    ->     email VARCHAR(100) NOT NULL UNIQUE,
+    ->     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc users;
++------------+--------------+------+-----+-------------------+-------------------+
+| Field      | Type         | Null | Key | Default           | Extra             |
++------------+--------------+------+-----+-------------------+-------------------+
+| userID     | int          | NO   | PRI | NULL              | auto_increment    |
+| username   | varchar(50)  | NO   | UNI | NULL              |                   |
+| password   | varchar(255) | NO   |     | NULL              |                   |
+| email      | varchar(100) | NO   | UNI | NULL              |                   |
+| created_at | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------+--------------+------+-----+-------------------+-------------------+
+5 rows in set (0.01 sec)
