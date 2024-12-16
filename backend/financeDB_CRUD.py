@@ -31,3 +31,25 @@ def delete_income(income_id):
     query = "DELETE FROM income WHERE incomeID = %s"
     cursor.execute(query, (income_id,))
     connection.commit()
+
+def add_expense(amount, category, date, description):
+    query = "INSERT INTO expenses (expenseAmount, expenseCategory, expenseDate, expenseDescription) VALUES (%s, %s, %s, %s)"
+    values = (amount, category, date, description)
+    cursor.execute(query, values)
+    connection.commit()
+
+def get_expenses():
+    query = "SELECT * FROM expenses"
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def update_expense(expense_id, amount, description):
+    query = "UPDATE expenses SET expenseAmount = %s, expenseDescription = %s WHERE expenseID = %s"
+    values = (amount, description, expense_id)
+    cursor.execute(query, values)
+    connection.commit()
+
+def delete_expense(expense_id):
+    query = "DELETE FROM expenses WHERE expenseID = %s"
+    cursor.execute(query, (expense_id,))
+    connection.commit()
