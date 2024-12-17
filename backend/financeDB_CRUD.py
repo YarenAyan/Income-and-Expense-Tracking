@@ -21,9 +21,9 @@ def get_incomes():
     cursor.execute(query)
     return cursor.fetchall()
 
-def update_income(income_id, amount, description):
-    query = "UPDATE income SET incomeAmount = %s, incomeDescription = %s WHERE incomeID = %s"
-    values = (amount, description, income_id)
+def update_income(income_id, amount, category, date, description):
+    query = "UPDATE income SET incomeAmount = %s, incomeCategory = %s, incomeDate = %s, incomeDescription = %s WHERE incomeID = %s"
+    values = (amount, category, date, description, income_id)
     cursor.execute(query, values)
     connection.commit()
 
@@ -43,9 +43,9 @@ def get_expenses():
     cursor.execute(query)
     return cursor.fetchall()
 
-def update_expense(expense_id, amount, description):
-    query = "UPDATE expenses SET expenseAmount = %s, expenseDescription = %s WHERE expenseID = %s"
-    values = (amount, description, expense_id)
+def update_expense(expense_id, amount, category, date, description):
+    query = "UPDATE expenses SET expenseAmount = %s, expenseCategory = %s, expenseDate = %s, expenseDescription = %s WHERE expenseID = %s"
+    values = (amount, category, date, description, expense_id)
     cursor.execute(query, values)
     connection.commit()
 
